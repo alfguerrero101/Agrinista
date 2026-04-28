@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body { display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background-color: #f0f2f5; font-family: Arial, sans-serif; }
+        .container { display: flex; flex-direction: column; gap: 20px; text-align: center; }
+        .shape { width: 250px; height: 80px; border: 2px solid #333; border-radius: 50px; display: flex; justify-content: center; align-items: center; font-size: 20px; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1); cursor: pointer; transition: transform 0.1s ease; outline: none; }
+        .shape:hover { transform: translateY(-1px); opacity: 0.9; }
+        .student { background-color: #c2a74f; color: white; }
+        .seller { background-color: #e82e2d; color: white; }
+        
+        #login-form { display: none; flex-direction: column; gap: 15px; background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); border: 2px solid #333; width: 300px;}
+        input { padding: 12px; border-radius: 8px; border: 1px solid #ccc; font-size: 16px; }
+        
+        .hidden { display: none; }
+
+        .login-btn { background-color: #c2a74f; color: white; border: none; padding: 12px; border-radius: 8px; font-weight: bold; cursor: pointer; }
+        .signup-btn { background-color: #e82e2d; color:white; border: none; padding: 12px; border-radius: 8px; font-weight: bold; cursor: pointer; }
+        .login-btn:hover, .signup-btn:hover { transform: translateY(-1px); opacity: 0.9; }
+
+        .top-left-logo {
+            position: absolute; 
+            top: 20px;
+            left: 20px;
+            width: 100px;
+            height: auto;
+            z-index: 10; 
+        }
+    </style>
+</head>
+<body>
+
+<img src="https://upload.wikimedia.org/wikipedia/en/e/e2/Ateneo_de_Naga_University_logo.png" alt="Logo" class="top-left-logo">
+
+<div class="container">
+    <div id="selection-view" class="container">
+        <button class="shape student" onclick="showLogin('Student')">Student</button>
+        <button class="shape seller" onclick="showLogin('Seller')">Seller</button>
+    </div>
+
+    <div id="login-form">
+        <h2 id="form-title">Login</h2>
+        <input type="text" placeholder="Username" required>
+        <input type="password" placeholder="Password" required>
+        
+        <input type="password" id="confirm-pass" class="hidden" placeholder="Confirm Password">
+        
+        <button class="login-btn" id="main-login-btn">Login</button>
+        <button class="signup-btn" onclick="showSignUp()">Sign Up</button>
+        
+        <a href="#" onclick="location.reload()" style="font-size: 12px; color: #666; margin-top: 10px;">Go Back</a>
+    </div>
+</div>
+
+<script>
+    let currentUserType = "";
+
+    function showLogin(userType) 
+    {
+        currentUserType = userType; // Store the selection
+        document.getElementById('selection-view').style.display = 'none';
+        document.getElementById('login-form').style.display = 'flex';
+        document.getElementById('form-title').innerText = userType + " Login";
+    }
+
+    function showSignUp() 
+    {
+        document.getElementById('form-title').innerText = currentUserType + " Sign Up";
+        document.getElementById('confirm-pass').classList.remove('hidden');
+        document.getElementById('main-login-btn').style.display = 'none';
+    }
+</script>
+
+</body>
+</html>
